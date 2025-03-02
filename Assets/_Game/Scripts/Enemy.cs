@@ -65,16 +65,16 @@ public class Enemy : Character
     public void Moving()
     {
         ChangeAnim("Run");
-        rb.velocity = transform.right * moveSpeed;
+        rb.linearVelocity = transform.right * moveSpeed;
     }
 
     public void StopMoving()
     {
         ChangeAnim("Idle");
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
     }
 
-    public void StopMovingNoAnim() => rb.velocity = Vector2.zero;
+    public void StopMovingNoAnim() => rb.linearVelocity = Vector2.zero;
 
     public void Attack()
     {

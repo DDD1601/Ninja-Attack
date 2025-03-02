@@ -77,7 +77,7 @@ public class Player : Character
 
         if (isDash)
         {
-            rb.velocity = new Vector2(dashSpeed * (transform.rotation.y == 0 ? 1 : -1), rb.velocity.y);
+            rb.linearVelocity = new Vector2(dashSpeed * (transform.rotation.y == 0 ? 1 : -1), rb.linearVelocity.y);
             SpawnSpriteDash();
             //Debug.Log(dashSpeed * (transform.rotation.y == 0 ? 1 : -1));
             return;
@@ -137,12 +137,12 @@ public class Player : Character
 
         if (isAttack)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             return;
         }
 
         //chawck fall
-        if (!isGrounded && rb.velocity.y < 0)
+        if (!isGrounded && rb.linearVelocity.y < 0)
         {
             ChangeAnim("Fall");
             isJumping = false;
@@ -151,7 +151,7 @@ public class Player : Character
         //moving
         if (Mathf.Abs(horizontal) > .1f)
         {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
             transform.rotation = Quaternion.Euler(new Vector3(0, horizontal > 0 ? 0 : 180, 0));
         }
         else if (isGrounded && !isJumping)
@@ -248,17 +248,17 @@ public class Player : Character
 
         lasttimeFly -= Time.deltaTime;
         if (lasttimeFly > 0)
-            rb.velocity = new Vector2(0, speedFly);
+            rb.linearVelocity = new Vector2(0, speedFly);
         else if (canSpawnBlackHole)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.gravityScale = 0;
             canSpawnBlackHole = false;
             BlackHole blackHole = Instantiate(blackHolePrefabs, transform.position, Quaternion.identity).GetComponent<BlackHole>();
             blackHole.SetUp(this);
         }
         else
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
 
     }
     public void SetEndBlackHole()
@@ -298,7 +298,7 @@ public class Player : Character
         //Debug.Log("End Dash");
         isDash = false;
         //anim.SetBool("Dash", isDash);
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         lastTimeDash = dashCoundown;
         //ChangeAnim("Idle");
     }

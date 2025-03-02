@@ -79,7 +79,7 @@ public class Character : MonoBehaviour
 
     public void SetIsNoDamage(bool _bool) => this.IsNoDamage = _bool;
 
-    public void SetZeroVelocity() => rb.velocity = Vector2.zero;
+    public void SetZeroVelocity() => rb.linearVelocity = Vector2.zero;
 
     public virtual void Stun(bool _bool)
     {
@@ -87,5 +87,5 @@ public class Character : MonoBehaviour
         anim.speed = _bool ? 0 : 1;
     }
 
-    public void SetVelocity(Vector2 _velocity) => rb.velocity = _velocity;
+    public void SetVelocity(Vector2 _velocity) => rb.linearVelocity = _velocity;
 }

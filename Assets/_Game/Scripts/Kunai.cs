@@ -14,7 +14,7 @@ public class Kunai : MonoBehaviour
     public void OnInit()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * speedMove;
+        rb.linearVelocity = transform.right * speedMove;
         Invoke(nameof(OnDespawn), 4f);
     }
 
